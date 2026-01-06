@@ -38,6 +38,7 @@ static SDL_GameController* gameController = NULL;
 #define BTN_VOLUME_DOWN 0
 #define BTN_POWER       0
 #define BTN_EXIT        0
+#define BTN_ESC         (SDLK_ESCAPE)
 #else
 // RG35xx (old) mapping
 #define BTN_UP          119
@@ -59,6 +60,7 @@ static SDL_GameController* gameController = NULL;
 #define BTN_VOLUME_DOWN 116
 #define BTN_POWER       0
 #define BTN_EXIT        0
+#define BTN_ESC         27
 #endif
 
 static int decodeKey(int sym) {
@@ -118,6 +120,7 @@ void mainLoopRun(void (*draw)(void), void (*onEvent)(enum MainLoopEvent event, i
       if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && (
         (event.key.keysym.sym == BTN_POWER) ||
         (event.key.keysym.sym == BTN_EXIT) ||
+        (event.key.keysym.sym == BTN_ESC) ||
         (menu && event.key.keysym.sym == BTN_X)))) {
         onEvent(eventExit, 0, NULL);
 #ifdef GAMEPAD_SUPPORT
